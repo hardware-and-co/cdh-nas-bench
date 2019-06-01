@@ -10,12 +10,14 @@ if [ ! -d NPB3.4 ]; then
   tar -xvf NPB3.4.tar.gz
   cd NPB3.4/NPB3.4-MPI
   cp config/make.def.template config/make.def 2>/dev/null
-  for (( b=0; b<${#BENCHS[@]}; b++ )); do
-    make ${BENCHS[$b]} CLASS=${CLASS[$b]}
-  done
 else
   cd NPB3.4/NPB3.4-MPI
 fi
+
+make clean
+for (( b=0; b<${#BENCHS[@]}; b++ )); do
+  make ${BENCHS[$b]} CLASS=${CLASS[$b]}
+done
 
 
 # Bench
